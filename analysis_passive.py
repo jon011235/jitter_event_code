@@ -257,22 +257,22 @@ def effective_event(w, r):
     elif w.period > r.period: # Algorithm(2) line 3, Theorem(3)
         if (r.period + r.maxjitter) <= (w.period - w.maxjitter):  # Formula (23) 
             # Formula (24)
-            kw = max(0, (((delta + r.maxjitter - r.period) // w.period) + 1))  
+            kw = max(0, ((delta // w.period) + 1 if (delta % w.period > w.maxjitter) else 0 ))  
             w_offser_star = w.offset + kw * w.period
             w_jitter_star = w.maxjitter
             r_offset_star = w_offser_star
-            r_jitter_star = r.period + w.maxjitter   
+            r_jitter_star = r.period + w.maxjitter + r.maxjitter
         else:
             print(f"Does not conform to Theorem (3), Formula (23).")
             return False
     elif w.period < r.period: # Algorithm(2) line 7, Theorem(4)
         if (w.period + w.maxjitter) <= (r.period - r.maxjitter):  # Formula (29) 
             # Formula (30)
-            kr = max(0, math.ceil((w.maxjitter - delta) / r.period))  
+            kr = 1 + max(0, ((- delta) // r.period) + 1 if r.maxjitter < (-delta) % w.period else 0)  
             r_offset_star = r.offset + kr * r.period
             r_jitter_star = r.maxjitter  # 
             w_offser_star = r_offset_star - w.period
-            w_jitter_star = w.period + r.maxjitter   
+            w_jitter_star = w.period + r.maxjitter + w.maxjitter
         else:
             print(f"Does not conform to Theorem (4), Formula (29).")
             return False
