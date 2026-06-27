@@ -1,8 +1,8 @@
 # Jitter Propagation in Task Chains
 
 > [!IMPORTANT]
-> This is a corrected of the algorithm. The original upper bound for the jitter was too low. I found this problems during the mechanization of the paper for my bachelor thesis. The mechanization can be found here: https://gitlab.cs.uni-saarland.de/rtsc/public/prosa-jitter-chain/-/blob/master/results/jitter_chain_propagation.v
-> In particular, the jitter change in theorem 3 to $T_r+J_w+J_r$ and in theorem 4 to $T_w+ J_w+J_r$. Additionally the offset (kw/kr) was changed since the original would skip to many write/read pairs
+> This is a corrected version of the algorithm. The original upper bound for the jitter was too low. I found this problems during the mechanization of the paper for my bachelor thesis. The mechanization can be found here: https://gitlab.cs.uni-saarland.de/rtsc/public/prosa-jitter-chain/-/blob/master/results/jitter_chain_propagation.v
+> In particular, the jitter changes in theorem 3 to $T_r+J_w+J_r$ and in theorem 4 to $T_w+ J_w+J_r$. Additionally the offset ($k_w$/$k_r$) was changed since the original would skip to many write/read pairs
 
 
 
